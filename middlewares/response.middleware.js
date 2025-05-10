@@ -22,7 +22,7 @@ const responseMiddleware = (req, res, next) => {
     });
   };
 
-  // Function for internal server error (status 500) - optional, but good to have
+  // Function for internal server error (status 500)
   res.internalError = (message) => {
     res.status(500).json({
       error: true,
