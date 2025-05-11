@@ -1,8 +1,6 @@
 import { Router } from "express";
 import { fightersService } from "../services/fightService.js";
 import { responseMiddleware } from "../middlewares/response.middleware.js";
-// Assume fighter IDs are sent in the request body for a fight
-// No specific validation middleware for fight creation is mentioned, but basic checks can be added.
 
 const router = Router();
 
@@ -16,11 +14,9 @@ router.post("/", (req, res) => {
     if (!fighter1Id || !fighter2Id) {
       return res.badRequest("Both fighter1Id and fighter2Id are required.");
     }
-    // The fight service should handle fetching fighters and the fight logic
     const fightResult = fightersService.startFight(fighter1Id, fighter2Id);
     res.success(fightResult);
   } catch (error) {
-    // Catch errors like "Fighter not found" or other fight logic errors
     if (error.message.includes("not found")) {
         return res.notFound(error.message);
     }
@@ -28,7 +24,7 @@ router.post("/", (req, res) => {
   }
 });
 
-// GET /api/fight (Get fight history - Additional Task)
+// GET /api/fight (Get fight history)
 router.get("/", (req, res) => {
   try {
     const fightHistory = fightersService.getAllFights();

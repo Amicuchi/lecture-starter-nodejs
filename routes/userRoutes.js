@@ -8,7 +8,7 @@ import { responseMiddleware } from "../middlewares/response.middleware.js";
 
 const router = Router();
 
-router.use(responseMiddleware); // Apply response middleware to all user routes
+router.use(responseMiddleware);
 
 // GET /api/users
 router.get("/", (req, res) => {
@@ -39,7 +39,6 @@ router.post("/", createUserValid, (req, res) => {
     const newUser = userService.create(req.body);
     res.success(newUser);
   } catch (error) {
-    // Handle specific errors like email/phone already exists from service
     res.badRequest(error.message);
   }
 });
@@ -61,11 +60,9 @@ router.patch("/:id", updateUserValid, (req, res) => {
 router.delete("/:id", (req, res) => {
   try {
     const result = userService.delete(req.params.id);
-    // The service throws an error if user not found, so no need to check here explicitly for notFound
-    // unless the delete method was changed to return null/false for not found.
-    res.success(result); // or res.success({ message: "User deleted successfully" });
+    res.success(result);
   } catch (error) {
-    if (error.message === "User not found.") { // Example of specific error handling
+    if (error.message === "User not found.") {
         return res.notFound(error.message);
     }
     res.badRequest(error.message);

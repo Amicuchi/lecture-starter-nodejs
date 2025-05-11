@@ -60,7 +60,6 @@ router.patch("/:id", updateFighterValid, (req, res) => {
 router.delete("/:id", (req, res) => {
   try {
     const result = fighterService.delete(req.params.id);
-    // The service throws an error if fighter not found
     res.success(result);
   } catch (error) {
     if (error.message === "Fighter not found.") { 
