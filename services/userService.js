@@ -27,7 +27,7 @@ class UserService {
     if (existingUserByEmail) {
       throw new Error("User with this email already exists.");
     }
-    const existingUserByPhone = userRepository.getOne({ phoneNumber: data.phoneNumber });
+    const existingUserByPhone = userRepository.getOne({ phone: data.phone });
     if (existingUserByPhone) {
       throw new Error("User with this phone number already exists.");
     }
@@ -48,8 +48,8 @@ class UserService {
         throw new Error("User with this email already exists.");
       }
     }
-    if (dataToUpdate.phoneNumber && dataToUpdate.phoneNumber !== user.phoneNumber) {
-      const existingUserByPhone = userRepository.getOne({ phoneNumber: dataToUpdate.phoneNumber });
+    if (dataToUpdate.phone && dataToUpdate.phone !== user.phone) {
+      const existingUserByPhone = userRepository.getOne({ phone: dataToUpdate.phone });
       if (existingUserByPhone) {
         throw new Error("User with this phone number already exists.");
       }

@@ -39,5 +39,6 @@
   "engines": {
     "node": "16.x.x",
     "npm": "8.x.x"
-  }
+  },
+  "proxy": "http://localhost:3050"
 }

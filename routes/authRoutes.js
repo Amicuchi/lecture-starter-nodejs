@@ -11,14 +11,18 @@ router.post(
       const { email, password } = req.body;
 
       if (!email || !password) {
-        throw Error("Email and password are required");
+        // throw Error("Email and password are required");
+        return res.badRequest("Email and password are required");
       }
 
       const user = authService.login({ email, password });
 
-      res.data = user;
+      // res.data = user;
+      return res.success(user);
+
     } catch (err) {
-      res.err = err;
+      // res.err = err;
+      return res.badRequest(err.message);
     } finally {
       next();
     }

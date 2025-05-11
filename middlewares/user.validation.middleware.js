@@ -27,8 +27,8 @@ const validateUserCommon = (req, res, next, isUpdate = false) => {
     }
   }
 
-  if (userData.phoneNumber) {
-    if (typeof userData.phoneNumber !== "string" || !/^\+380\d{9}$/.test(userData.phoneNumber)) {
+  if (userData.phone) {
+    if (typeof userData.phone !== "string" || !/^\+380\d{9}$/.test(userData.phone)) {
       return res.status(400).json({ error: true, message: "Phone number format is invalid. Expected format: +380xxxxxxxxx" });
     }
   }
@@ -53,7 +53,7 @@ const validateUserCommon = (req, res, next, isUpdate = false) => {
 
 const createUserValid = (req, res, next) => {
   const userData = req.body;
-  const requiredFields = ["firstName", "lastName", "email", "phoneNumber", "password"];
+  const requiredFields = ["firstName", "lastName", "email", "phone", "password"];
   // User validation middleware
 
   const missingFields = requiredFields.filter(field => !userData.hasOwnProperty(field) || userData[field] === null || userData[field] === "");

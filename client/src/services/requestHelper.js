@@ -1,4 +1,5 @@
-const apiUrl = '/api';
+// const apiUrl = '/api';
+// const apiUrl = '';
 
 export const get = async (entityName, id = '') => {
     return await makeRequest(`${entityName}/${id}`, 'GET');
@@ -18,22 +19,24 @@ export const deleteReq = async (entityName, id) => {
 
 const makeRequest = async (path, method, body) => {
     try {
-        const url = `${apiUrl}/${path}`
+        // const url = `${apiUrl}/${path}`
+        const url = `/${path}`
         const res = await fetch(url, {
             method,
-            body: body ? JSON.stringify(body) : undefined ,
+            body: body ? JSON.stringify(body) : undefined,
             headers: { "Content-Type": "application/json" }
         });
 
         const dataObj = await res.json();
 
-        if(res.ok) {
+        if (res.ok) {
             return dataObj;
         }
 
         alert(`${dataObj.message}`);
         return dataObj;
     } catch (err) {
-        console.error(err);
+        console.error("makeRequest error:", err);
+        throw err;
     }
 }

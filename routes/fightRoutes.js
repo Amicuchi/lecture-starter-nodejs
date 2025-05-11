@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
       return res.badRequest("Both fighter1Id and fighter2Id are required.");
     }
     // The fight service should handle fetching fighters and the fight logic
-    const fightResult = fightService.startFight(fighter1Id, fighter2Id);
+    const fightResult = fightersService.startFight(fighter1Id, fighter2Id);
     res.success(fightResult);
   } catch (error) {
     // Catch errors like "Fighter not found" or other fight logic errors
@@ -31,7 +31,7 @@ router.post("/", (req, res) => {
 // GET /api/fight (Get fight history - Additional Task)
 router.get("/", (req, res) => {
   try {
-    const fightHistory = fightService.getFightHistory();
+    const fightHistory = fightersService.getAllFights();
     res.success(fightHistory);
   } catch (error) {
     res.badRequest(error.message);
