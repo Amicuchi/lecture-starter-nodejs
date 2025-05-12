@@ -6,6 +6,7 @@ const router = Router();
 
 router.post(
   "/login",
+  responseMiddleware,
   (req, res, next) => {
     try {
       const { email, password } = req.body;
@@ -20,11 +21,11 @@ router.post(
 
     } catch (err) {
       return res.badRequest(err.message);
-    } finally {
-      next();
-    }
+    } 
+    // finally {
+    //   next();
+    // }
   },
-  responseMiddleware
 );
 
 export { router };
