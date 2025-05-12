@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { FormControl, InputLabel, makeStyles, Select } from '@material-ui/core';
-import { MenuItem } from 'material-ui';
+import React from 'react';
+// import { FormControl, InputLabel, makeStyles, Select } from '@material-ui/core';
+// import { MenuItem } from 'material-ui';
+import { FormControl, InputLabel, makeStyles, Select, MenuItem } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -14,11 +15,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Fighter({ fightersList, onFighterSelect, selectedFighter }) {
     const classes = useStyles();
-    const [fighter, setFighter] = useState();
+    // const [fighter, setFighter] = useState();
 
     const handleChange = (event) => {
-        debugger;
-        setFighter(event.target.value);
+        // debugger;
+        // setFighter(event.target.value);
         onFighterSelect(event.target.value);
     };
 
@@ -29,7 +30,8 @@ export default function Fighter({ fightersList, onFighterSelect, selectedFighter
                 <Select
                     labelId="simple-select-label"
                     id="simple-select"
-                    value={fighter}
+                    // value={fighter}
+                    value={selectedFighter || ''}
                     onChange={handleChange}
                 >
                     {fightersList.map((it, index) => {
