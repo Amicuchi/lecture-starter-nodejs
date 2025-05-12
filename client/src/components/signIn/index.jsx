@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField } from 'material-ui';
+// import { TextField } from 'material-ui';
+import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
 
 import './signIn.css';
@@ -39,8 +40,8 @@ export default function SignIn({ setIsLoggedIn }) {
 
     return (
         <form className={classes.root} noValidate autoComplete="off">
-            <TextField onChange={onEmailChange} id="standard-basic" label="Standard" placeholder="Email"/>
-            <TextField onChange={onPasswordChange} id="standard-basic" label="Standard" placeholder="Password" type="password"/>
+            <TextField onChange={onEmailChange} id="standard-basic" label="Email" placeholder="Email"/>
+            <TextField onChange={onPasswordChange} id="standard-basic" label="Password" placeholder="Password" type="password"/>
             <Button onClick={onSubmit} variant="contained" color="primary">Sign In</Button>
         </form>
     )

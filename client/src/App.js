@@ -1,14 +1,16 @@
 import React from 'react';
-import StartScreen from './components/startScreen'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import StartScreen from './components/startScreen';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './App.css';
+
+const theme = createMuiTheme();
 
 function App() {
 
   return (
-    <MuiThemeProvider>
+    <ThemeProvider theme={theme}>
       <StartScreen />
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 

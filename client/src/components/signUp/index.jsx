@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField } from 'material-ui';
+// import { TextField } from 'material-ui';
+import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
 
 import { createUser } from '../../services/domainRequest/userRequest';
@@ -54,11 +55,11 @@ export default function SignUp({ setIsLoggedIn }) {
 
     return (
         <form className={classes.root} noValidate autoComplete="off">
-            <TextField key="first-name" onChange={onFirstNameChange} id="standard-basic" label="Standard" placeholder="First Name"/>
-            <TextField key="last-name" onChange={onLastNameChange} id="standard-basic" label="Standard" placeholder="Last Name"/>
-            <TextField key="email" onChange={onEmailChange} id="standard-basic" label="Standard" placeholder="Email"/>
-            <TextField key="phone" onChange={onPhoneChange} id="standard-basic" label="Standard" placeholder="Phone Number"/>
-            <TextField key="password" onChange={onPasswordChange} id="standard-basic" label="Standard" placeholder="Password" type="password"/>
+            <TextField key="first-name" onChange={onFirstNameChange} id="standard-basic" label="First Name" placeholder="First Name"/>
+            <TextField key="last-name" onChange={onLastNameChange} id="standard-basic" label="Last Name" placeholder="Last Name"/>
+            <TextField key="email" onChange={onEmailChange} id="standard-basic" label="Email" placeholder="Email"/>
+            <TextField key="phone" onChange={onPhoneChange} id="standard-basic" label="Phone Number" placeholder="Phone Number"/>
+            <TextField key="password" onChange={onPasswordChange} id="standard-basic" label="Password" placeholder="Password" type="password"/>
             <Button onClick={onSubmit} variant="contained" color="primary">Sign Up</Button>
         </form>
     )
