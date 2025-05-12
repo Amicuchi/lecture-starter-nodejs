@@ -7,14 +7,13 @@ const router = Router();
 router.use(responseMiddleware);
 
 // POST /api/fight
-// Body example: { fighter1Id: "some-id", fighter2Id: "another-id" }
 router.post("/", (req, res) => {
   try {
     const { fighter1Id, fighter2Id } = req.body;
     if (!fighter1Id || !fighter2Id) {
       return res.badRequest("Both fighter1Id and fighter2Id are required.");
     }
-    const fightResult = fightersService.startFight(fighter1Id, fighter2Id);
+    const fightResult = fightersService.createFight(fighter1Id, fighter2Id);
     res.success(fightResult);
   } catch (error) {
     if (error.message.includes("not found")) {
