@@ -3,21 +3,33 @@ import { fighterRepository } from "../repositories/fighterRepository.js";
 
 class FightersService {
   createFight(fighter1Id, fighter2Id) {
-    const fighter1 = fighterRepository.getOne({ id: fighter1Id });
-    const fighter2 = fighterRepository.getOne({ id: fighter2Id });
+    const originalFighter1 = fighterRepository.getOne({ id: fighter1Id });
+    const originalFighter2 = fighterRepository.getOne({ id: fighter2Id });
 
-    if (!fighter1 || !fighter2) {
+    if (!originalFighter1 || !originalFighter2) {
       throw new Error("One or both fighters were not found.");
     }
 
+    // clonning the fighters to Ensure they have a default health value if not provided
+    const fighter1 = { ...originalFighter1, health: originalFighter1.health };
+    const fighter2 = { ...originalFighter2, health: originalFighter2.health };
+
     // --- Start of Fight Logic ---
     let fightLog = [];
-    let attacker = fighter1;
-    let defender = fighter2;
     let winner = null;
 
+    // Simple random selection of attacker and defender
+    let attacker, defender;
+    if (Math.random() < 0.5) {
+      attacker = fighter1;
+      defender = fighter2;
+    } else {
+      attacker = fighter2;
+      defender = fighter1;
+    }
+
     // Simple turn-based simulation
-    for (let i = 0; i < 10; i++) { // Maximum of 10 turns, for example
+    for (let i = 0; i < 10; i++) { // Maximum of 10 turns, in this case
       const damage = Math.max(1, attacker.power - defender.defense);
       defender.health -= damage;
       fightLog.push(`${attacker.name} attacks ${defender.name} causing ${damage} damage. ${defender.name} has ${defender.health} health left.`);
@@ -27,6 +39,7 @@ class FightersService {
         fightLog.push(`${defender.name} was defeated! ${attacker.name} is the winner!`);
         break;
       }
+
       // Swap attacker and defender
       [attacker, defender] = [defender, attacker];
     }
