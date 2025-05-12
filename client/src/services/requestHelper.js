@@ -1,5 +1,4 @@
-// const apiUrl = '/api';
-// const apiUrl = '';
+const apiUrl = '/api';
 
 export const get = async (entityName, id = '') => {
     return await makeRequest(`${entityName}/${id}`, 'GET');
@@ -19,8 +18,7 @@ export const deleteReq = async (entityName, id) => {
 
 const makeRequest = async (path, method, body) => {
     try {
-        // const url = `${apiUrl}/${path}`
-        const url = `/${path}`
+        const url = `${apiUrl}/${path}`
         const res = await fetch(url, {
             method,
             body: body ? JSON.stringify(body) : undefined,
