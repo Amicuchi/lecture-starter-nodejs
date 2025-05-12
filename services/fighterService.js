@@ -12,7 +12,7 @@ class FighterService {
   getById(id) {
     const fighter = fighterRepository.getOne({ id });
     if (!fighter) {
-      return null;
+      throw new Error("Fighter not found");
     }
     return fighter;
   }
